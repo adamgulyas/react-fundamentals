@@ -9,6 +9,9 @@ function UsernameForm({onSubmitUsername}) {
   // `event.preventDefault()` to prevent the default behavior of form submit
   // events (which refreshes the page).
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+  const usernameInputRef = React.useRef('Default value')
+
   const handleSubmit = event => {
     event.preventDefault()
 
@@ -16,7 +19,7 @@ function UsernameForm({onSubmitUsername}) {
     // you prefer from the options mentioned in the instructions)
     // 💰 For example: event.target.elements[0].value
     // 🐨 Call `onSubmitUsername` with the value of the input
-    const name = event.target.elements[0].value
+    const name = usernameInputRef.current.value
     onSubmitUsername(name)
   }
   // 🐨 add the onSubmit handler to the <form> below
@@ -27,7 +30,7 @@ function UsernameForm({onSubmitUsername}) {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
-        <input id="username" type="text" />
+        <input ref={usernameInputRef} id="username" type="text" />
       </div>
       <button type="submit">Submit</button>
     </form>
